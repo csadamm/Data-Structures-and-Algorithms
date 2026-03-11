@@ -7,9 +7,9 @@ For example: 10: 1 x 10 = 2 x 5
 '''
 
 #Generate array with values from 1 to 1024
-arr = [2,3,4,6]
-# for i in range(1,1025):
-#     arr.append(i)
+arr = []
+for i in range(1,1025):
+    arr.append(i)
     
 '''
 Imagine the array A = [2,3,4,6]
@@ -34,4 +34,11 @@ for i in range(0, len(arr)):
             #products[product] means -> access this key inside the dictionary
             products[product] = [pair]
         
+#now we have a dictionary with every key being a product and each value being the list of pairs of those products
+#ex: {6 : [(1,6), (2,3)], 8 : [(1,8), (2,4)]} etc.
+
+#therefore we will go through each key in the products dictionary and check the length of its values (its list of pairs) is greater than 1
+#if so, we will print it
 for product in products:
+    if len(products[product]) > 1:
+        print(f"Product {product}: {products[product]}")
