@@ -1,0 +1,645 @@
+/* Reset websites marging, padding, box-sizing */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
+
+/* variables */
+:root {
+    /* colors */
+    --color-bg:         #17171f;      /* main background */
+    --color-header:     #121214;      /* header/nav */
+    --color-surface:    #1e1e28;      /* slightly lighter - cards, forms */
+    --color-border:     #2a2a35;      /* subtle borders */
+    --color-accent:     #7b6cff;      /* buttons, highlights */
+    --color-accent-hover: #9d91ff;    /* lighter purple on hover */
+    --color-text:       #eaeaf5;      /* main text */
+    --color-text-muted: #8888aa;      /* muted - secondary text, labels */
+
+    /* padding */
+    --space-sm:  12px;
+    --space-md:  24px;
+    --space-lg:  48px;
+}
+
+/* affects the whole page */
+body{
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Space Grotesk', 'Space Mono', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* affects header */
+header{
+    background-color: var(--color-header);
+    padding: 0 var(--space-md);
+    border-bottom: 1px solid var(--color-border); /*draws a 1 pixel solid border at the bottom of the header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+#site-logo {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md); /*adds space between flex items */
+    padding: 0;
+    margin: 0;
+}
+
+nav a{
+    color: var(--color-text-muted);
+    text-decoration: none; /* removes underline */
+    font-weight: 500; /* makes text slightly bold */
+    transition: color 0.2s;  /* makes the transition when hovering over the link slightly smoother */
+}
+
+/* when mouse hovers over link, the text will brighten to white */
+/* also, automatically highlight the link of the page were currently on */
+nav a:hover, nav a[aria-current="page"] {
+    color: var(--color-text);
+}
+
+/* affects footer */
+footer {
+    background-color: var(--color-header);
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+/* affects the main body */
+main{
+    flex: 1; /* makes main grow to fill all available space between header and footer */
+    padding: var(--space-sm) var(--space-md);
+}
+
+/* index page, intro */
+#intro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-sm) var(--space-sm);
+    gap: var(--space-sm);
+}
+
+#intro h1{
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+#intro p{
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 500px;
+}
+
+#intro-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+#intro a{
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-md); /* adds padding around the text, makes the text seem like its encased in a box */
+    border-radius: 6px; /* rounds the corners of the box */
+    font-weight: 600;
+    transition: background-color 0.2s; /* makes the transition when hovering over the button slightly smoother */
+    display: flex;
+    gap: 6px; /*gap between text and icons*/
+    align-items: center; /*center the text and icons*/
+}
+
+#intro a:hover {
+    background-color: var(--color-accent-hover);
+}
+
+#featured, #recent{
+    padding: var(--space-sm) var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+#featured h2, #recent h2{
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: var(--space-md);
+}
+
+#recent a{
+    display: inline-block; /*makes link respect vertical margins but still flow inline with text */
+    margin-top: var(--space-md);
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+#recent a:hover{
+    color: var(--color-accent-hover);
+}
+
+/* Backlog page */
+#controls{
+    display: flex;
+    gap: var(--space-sm);
+}
+
+#controls select{
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 8px var(--space-md);
+    font-family: 'Space Mono', 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    cursor: pointer; /* change cursor into a hand when hovering over dropdown */
+    transition: border-color 0.2s;
+}
+
+#controls select:hover{
+    border-color: var(--color-accent);
+}
+
+#backlog-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+}
+
+    #filter-options{
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+}
+
+    #filter-options label{
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        color: var(--color-text-muted);
+        font-size: 0.9rem;
+}
+
+    #filter-options input[type="checkbox"]{
+        accent-color: var(--color-accent);
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+}
+
+/* affects add.html*/
+#add-game-form{
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--color-surface);
+    border: 3px solid var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-lg);
+}
+
+.page-title{
+    text-align: center;
+    margin-bottom: var(--space-md);
+    font-size: 2.2rem;
+}
+
+#add-game-form div{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: var(--space-sm);
+}
+
+#add-game-form label{
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--color-text);
+}
+
+#add-game-form input, #add-game-form select, #add-game-form textarea{
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: var(--space-sm);
+    font-family: 'Space Mono', 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+/* this will add a purple border around any form which is clicked/focused */
+#add-game-form input:focus,
+#add-game-form select:focus,
+#add-game-form textarea:focus{
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+#add-game-form textarea{
+    resize: vertical; /* text area can only be expanded vertically */
+    min-height: 40px;
+}
+
+#add-game-form button[type="submit"]{
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    border: none;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-lg);
+    font-family: 'Space Grotesk', 'Space Mono', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: block; /* turn it into a block element so that we can centralise it */
+    margin: 0 auto; /* centralises it */
+    margin-top: var(--space-md);
+    transition: background-color 0.2s;
+}
+
+#add-game-form button[type="submit"]:hover{
+    background-color: var(--color-accent-hover);
+}
+
+#form-error{
+    color: red; 
+    display: none; 
+    text-align: center;
+    font-family: 'Space Grotesk', 'Space Mono', sans-serif;
+    margin-bottom: var(--space-sm);
+}
+
+#search-results{
+    position: absolute; /* allows dropdown to float over the page content*/
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto; /*if content fits -> no scrollbar. if content doesnt fit -> scrollbar */
+    z-index: 10; /* top layer of site */
+    display: none;
+}
+
+/* removes the line bug */
+#search-results:empty{
+    display: none;
+}
+
+.search-result-item{
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-result-item:hover{
+    background-color: var(--color-bg);
+}
+
+.search-result-item img{
+    width: 128px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.search-result-item span{
+    font-size: 0.95rem;
+}
+/* game.html page */
+
+/* Re-read these later once API is added  */
+#game-page{
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start; /* lets each column (game details and personal review) be their own natural height */
+}
+
+#game-details{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+#game-cover{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+}
+
+#game-title{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#game-description{
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+#game-release-date{
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* personal review section */
+#personal-review{
+    flex: 1;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+#personal-review h2{
+    font-size: 1.6rem;
+    font-weight: 700;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+#personal-review span:first-child{
+    color: var(--color-text-muted);
+    font-size: 1rem;
+}
+
+#edit-button{
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    border: none;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Space Grotesk', 'Space Mono', sans-serif;
+    cursor: pointer;
+    margin-top: var(--space-sm);
+    transition: background-color 0.2s;
+}
+
+#edit-button:hover{
+    background-color: var(--color-accent-hover);
+}
+
+#delete-button{
+    background-color: transparent;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    font-family: 'Space Grotesk', 'Space Mono', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#delete-button:hover {
+    background-color: #ff4d4d;
+    color: var(--color-text);
+}
+/* media queries for mobile */
+
+@media(max-width: 768px){
+    header{
+        flex-wrap: wrap; /* allows items to spill onto the next line */
+        height: auto;
+        padding: var(--space-sm) var(--space-md);
+        gap: var(--space-sm);
+    }
+
+    nav ul{
+        gap: var(--space-sm);
+    }
+    
+    /* index.html */
+    #intro h1{
+        font-size: 2rem; 
+    }
+
+    #intro p{
+        font-size: 1rem;
+    }
+
+    #featured h2, #recent h2{
+        font-size: 1.2rem;
+    }
+
+    #intro-buttons{
+        flex-direction: column;
+        width: 80%;
+        font-size: 0.9rem;
+    }
+
+    /* decrease size of icons */
+    #intro-buttons svg{
+        width: 18px;
+        height: 18px;
+    }
+
+    #intro-buttons a{
+        justify-content: center;
+    }
+
+    /* backlog.html */
+
+    #backlog-header{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    #controls {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: var(--space-sm);
+    }
+
+    #controls select {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: var(--space-sm);
+    }
+
+    /* add.html*/
+    
+    .page-title{
+        font-size: 2rem; /* decrease page title size */
+    }
+
+    #add-game-form{
+        padding: var(--space-md); 
+    }
+
+    /* game.html */
+    #game-page{
+        flex-direction: column; /* makes items stack vertically */
+    }
+
+    #personal-review{
+        width: 100%; /* stretch to full size*/
+    }
+
+    /* game cards*/
+    .game-card {
+    width: calc(50% - var(--space-md));
+}
+}
+
+/* Game cards for backlog.js */
+#game-list, #recent-activity, #featured-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.empty-message{
+    width: 100%;
+}
+
+.game-card{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-md);
+    width: calc(25% - var(--space-md));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.game-card img{
+    width: 100%;
+    border-radius: 6px;
+}
+
+.game-card h3{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.game-card p{
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.game-card a{
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: auto;
+    transition: color 0.2s;
+}
+
+.game-card a:hover{
+    color: var(--color-accent-hover);
+}
+
+.add-new-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    border: 2px dashed var(--color-border);
+    background-color: transparent;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.add-new-card:hover{
+    border-color: var(--color-accent);
+    background-color: var(--color-surface);
+}
+
+.add-new-card a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    transition: color 0.2s;
+}
+
+.add-new-card:hover a{
+    color: var(--color-accent);
+}
+
+.add-new-icon{
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+}
+.add-new-label{
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* affect the "No games logged yet" on index.html */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-lg);
+    width: 100%;
+    text-align: center;
+    color: var(--color-text);
+    border: 2px dashed var(--color-border);
+}
+
+.label-empty{
+    font-size: 1.3rem;
+}
+
+#recent .btn-empty {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    font-size: 1rem;
+    background-color: var(--color-surface);
+    padding: var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+}
+
+#recent .btn-empty:hover {
+    color: var(--color-text);
+}
